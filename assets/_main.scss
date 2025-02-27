@@ -67,6 +67,7 @@ a {
   color: $white;
   font-weight: $fwBold;
   font-size: $font;
+  transition: background-color .2s;
 
   &:focus-visible {
     outline: 2px solid $white;
@@ -113,4 +114,10 @@ main {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+@media (any-hover: hover) {
+  .btn-primary:hover {
+    background-color: #E77E1E;
+  }
 }

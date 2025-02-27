@@ -141,6 +141,8 @@
     background: #242627D6;
   }
   &__menu {
+    display: flex;
+    flex-direction: column;
     background-color: $dark;
     padding: 2rem;
     gap: 1rem;

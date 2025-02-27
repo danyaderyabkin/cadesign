@@ -1,5 +1,5 @@
 <template>
-  <NuxtLoadingIndicator color="#CFBC00"/>
+  <NuxtLoadingIndicator color="#E9862A"/>
   <TheHeader/>
   <main class="main">
     <TheHero @open-modal="openModal"/>
@@ -10,10 +10,6 @@
 </template>
 <script setup lang="ts">
 const modal = ref(false)
-const openModal = () => {
-  modal.value = true
-}
-const closeModal = () => {
-  modal.value = false
-}
+const openModal = () => modal.value = true
+const closeModal = () => modal.value = false
 </script>

@@ -50,7 +50,7 @@
 
 .advantages-mobile {
   display: none;
-  @include sm-mobile {
+  @include md-desktop {
     display: block;
   }
   &__item {
@@ -171,11 +171,9 @@
   }
 
 }
-
-
 swiper-container::part(pagination) {
   display: none;
-  @include sm-mobile {
+  @include md-desktop {
     display: flex;
     justify-content: center;
     gap: 2rem;

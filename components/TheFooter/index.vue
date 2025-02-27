@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits(['openModal'])
-
 </script>
-
 <template>
 <footer class="footer">
   <div class="container footer__container">
@@ -50,7 +48,3 @@ const emit = defineEmits(['openModal'])
   </div>
 </footer>
 </template>
-
-<style scoped>
-
-</style>

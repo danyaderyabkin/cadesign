@@ -1,15 +1,9 @@
 <script setup lang="ts">
 const menu = ref(false)
 const body = ref()
-onMounted(() => {
-  body.value = document.querySelector('body')
-})
-
-watch(() => menu.value, () => {
-  menu.value ? body.value.classList.add('overflow') : body.value.classList.remove('overflow')
-})
+onMounted(() => body.value = document.querySelector('body'))
+watch(() => menu.value, () => menu.value ? body.value.classList.add('overflow') : body.value.classList.remove('overflow'))
 </script>
-
 <template>
   <header class="header">
     <div class="container header__container">
@@ -17,19 +11,19 @@ watch(() => menu.value, () => {
       <nav class="nav">
         <ul class="nav__list">
           <li class="nav__item">
-            <RouterLink class="nav__link" to="/">О нас</RouterLink>
+            <RouterLink class="nav__link" to="/about">О нас</RouterLink>
           </li>
           <li class="nav__item">
-            <RouterLink class="nav__link" to="/advantages">Наши ценности</RouterLink>
+            <RouterLink class="nav__link" to="/about">Наши ценности</RouterLink>
           </li>
           <li class="nav__item">
-            <RouterLink class="nav__link" to="/vac">Вакансии</RouterLink>
+            <RouterLink class="nav__link" to="/about">Вакансии</RouterLink>
           </li>
           <li class="nav__item">
-            <RouterLink class="nav__link" to="/carrier">Начало карьеры</RouterLink>
+            <RouterLink class="nav__link" to="/about">Начало карьеры</RouterLink>
           </li>
           <li class="nav__item">
-            <RouterLink class="nav__link" to="/contacts">Контакты</RouterLink>
+            <RouterLink class="nav__link" to="/about">Контакты</RouterLink>
           </li>
           <li class="nav__item dropdown">
             <button class="nav__link btn text-blue">Социальные сети
@@ -90,19 +84,19 @@ watch(() => menu.value, () => {
         </button>
         <ul>
           <li class="header__item">
-            <RouterLink class="header__link" to="/">О нас</RouterLink>
+            <RouterLink class="header__link" to="/about">О нас</RouterLink>
           </li>
           <li class="header__item">
-            <RouterLink class="header__link" to="/advantages">Наши ценности</RouterLink>
+            <RouterLink class="header__link" to="/about">Наши ценности</RouterLink>
           </li>
           <li class="header__item">
-            <RouterLink class="header__link" to="/vac">Вакансии</RouterLink>
+            <RouterLink class="header__link" to="/about">Вакансии</RouterLink>
           </li>
           <li class="header__item">
-            <RouterLink class="header__link" to="/carrier">Начало карьеры</RouterLink>
+            <RouterLink class="header__link" to="/about">Начало карьеры</RouterLink>
           </li>
           <li class="header__item">
-            <RouterLink class="header__link" to="/contacts">Контакты</RouterLink>
+            <RouterLink class="header__link" to="/about">Контакты</RouterLink>
           </li>
         </ul>
         <ul class="header__menu-socials">

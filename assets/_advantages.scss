@@ -1,0 +1,187 @@
+.advantages {
+  padding: 4rem 0;
+  @include md-desktop {
+    display: none;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid $gray;
+    @include xl-desktop {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    @include lg-desktop {
+      max-width: 980px;
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 5rem 1rem;
+    border: 1px solid $gray;
+    text-align: center;
+    gap: 2rem;
+    transition: padding .6s, box-shadow .3s;
+    cursor: crosshair;
+    @include xl-desktop {
+      padding: 4rem 3rem 1rem;
+    }
+    @include lg-desktop {
+      padding: 4rem 1rem 1rem;
+    }
+  }
+  &__image {
+    width: 65px;
+    svg {
+      transition: color .3s;
+    }
+  }
+  &__description {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s, visibility .3s;
+    color: #646464;
+  }
+
+}
+
+.advantages-mobile {
+  display: none;
+  @include sm-mobile {
+    display: block;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: 1px solid #ddd;
+    height: 300px;
+    transition: padding .6s, box-shadow .3s;
+    cursor: crosshair;
+    @include sm-tablets {
+      border: none;
+    }
+
+    p {
+      opacity: 0;
+      visibility: hidden;
+      text-align: center;
+      @include sm-tablets {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+  }
+  &__description {
+    opacity: 0;
+    visibility: hidden;
+    color: #646464;
+    transition: opacity .3s, visibility .3s;
+  }
+
+
+
+  .slider-btn {
+    display: none;
+  }
+
+  .swiper-backface-hidden {
+    padding: 2rem;
+  }
+
+  .swiper-slide-prev {
+    .advantages-mobile__item {
+      @include sm-tablets {
+        margin: 3rem;
+      }
+      @include sm-mobile {
+        margin: 0;
+        padding: 0 2rem;
+      }
+    }
+  }
+  .swiper-slide-active {
+    .advantages-mobile__item {
+      margin: 3rem 0 3rem 3rem;
+      @include sm-tablets {
+        margin: 3rem;
+      }
+      @include sm-mobile {
+        margin: 0;
+        padding: 0 2rem;
+      }
+    }
+  }
+  .swiper-slide-next {
+    .advantages-mobile__item {
+      margin: 3rem 3rem 3rem 0;
+      @include sm-tablets {
+        margin: 3rem;
+      }
+      @include sm-mobile {
+        margin: 0;
+        padding: 0 2rem;
+      }
+    }
+  }
+}
+
+
+@media (any-hover: hover) {
+  .advantages {
+    &__item:hover {
+      padding: 5rem;
+      box-shadow: 0 4px 32px -1px #00000021;
+      border: none;
+      @include lg-desktop {
+        padding: 3rem;
+      }
+
+      svg {
+        color: #E9862A;
+      }
+      p {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  .advantages-mobile {
+    &__item:hover {
+      padding: 5rem;
+      box-shadow: 0 4px 32px -1px #00000021;
+      border: none;
+      @include lg-desktop {
+        padding: 3rem;
+      }
+      svg {
+        color: #E9862A;
+      }
+      p {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+}
+
+
+swiper-container::part(pagination) {
+  display: none;
+  @include sm-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  @include sm-mobile-x {
+    gap: 1.5rem;
+  }
+}
+

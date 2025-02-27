@@ -11,7 +11,12 @@
   },
   "dependencies": {
     "nuxt": "^3.15.4",
+    "nuxt-swiper": "^2.0.0",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "maska": "^3.1.0",
+    "sass": "^1.85.0"
   }
 }

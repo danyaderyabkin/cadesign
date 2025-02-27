@@ -1,0 +1,90 @@
+.footer {
+  padding: 3rem 0 0;
+  background-color: $grayBg;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    a {
+      display: block;
+    }
+  }
+  &__phone {
+    font-size: 64px;
+    color: $black;
+    @include sm-tablets {
+      font-size: 40px;
+    }
+  }
+  &__mail {
+    display: flex;
+    margin-bottom: 1.5rem;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+    @include sm-mobile {
+      gap: .5rem;
+    }
+    .btn-second {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      width: 70px;
+      height: 50px;
+      color: $orange;
+      transition: color .3s, box-shadow .3s;
+      @include sm-mobile {
+        width: 55px;
+        height: 40px;
+      }
+
+      svg {
+        color: inherit;
+      }
+    }
+  }
+}
+.copyright {
+  padding: 3rem 0 2rem;
+  text-align: center;
+  background-color: $white;
+  @include sm-mobile {
+    padding: 1.75rem 1.25rem .25rem;
+  }
+   p {
+     font-size: $fontSmall;
+     margin-bottom: .5rem;
+     color: #828282;
+     @include sm-mobile {
+       font-size: $fontExtraSmall;
+     }
+   }
+  .text-blue {
+    @include sm-mobile {
+      font-size: $fontExtraSmall;
+      padding: 0;
+    }
+  }
+}
+@media (any-hover: hover) {
+  .footer {
+    &__list {
+      .btn-second:hover {
+        color: black;
+        box-shadow: 0 4px 22px -1px #00000011;
+      }
+    }
+  }
+}

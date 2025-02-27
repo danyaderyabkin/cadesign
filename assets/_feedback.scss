@@ -1,0 +1,88 @@
+.feedback {
+  max-width: 920px;
+  width: 100%;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    padding: 3rem;
+    gap: 1.5rem;
+    min-height: 50vh;
+
+    @include sm-tablets {
+      padding: 3rem 1rem 1rem;
+      gap: 1.5rem;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    gap: .25rem;
+    @include sm-mobile {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, label {
+      width: 50%;
+    }
+    label {
+      position: relative;
+      span {
+
+      }
+      input {
+        width: 100%;
+      }
+    }
+    .label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid $black;
+      color: $blue;
+      cursor: pointer;
+      padding: 1rem;
+      input {
+        width: 100%;
+      }
+    }
+
+  }
+  &__date {
+    width: 50%;
+    position: relative;
+    input {
+      width: 100%;
+    }
+  }
+  &__title {
+    font-size: $fontTitle;
+    margin-bottom: 2rem;
+    @include sm-tablets {
+      font-size: 22px;
+      margin-bottom: 1rem;
+    }
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    border: 1px solid $grayBg;
+    gap: 5rem;
+    @include md-desktop {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    .btn-primary {
+      padding: 1.5rem 6rem;
+    }
+  }
+  &__thx {
+    text-align: center;
+    margin: auto;
+    @include sm-mobile {
+      font-size: 20px;
+    }
+  }
+}

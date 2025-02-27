@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const items = [
+// Create 10 slides
+const containerRef = ref(null)
+const slides = ref(Array.from([
   {
     id: 1,
     image: `<svg width="66" height="62" viewBox="0 0 66 62" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,33 +60,52 @@ const items = [
     title: 'Надежность',
     description: 'Общего центра обслуживания. Свременные технологии, проекты, рабочие группы'
   }
-]
+]))
+
+const swiper = useSwiper(containerRef, {
+  slidesPerView: 2,
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+      slidesPerGroup: 1
+    },
+    760: {
+      slidesPerView: 2,
+    },
+  },
+})
+
+onMounted(() => {
+  // Access Swiper instance
+  // Read more about Swiper instance: https://swiperjs.com/swiper-api#methods--properties
+  console.log(swiper.instance)
+})
 </script>
 
 <template>
+  <ClientOnly>
+    <swiper-container  style="--swiper-pagination-color: #E9862A;" slides-per-group="2" pagination="true" class="wd" ref="containerRef">
+      <swiper-slide
+          v-for="(slide, idx) in slides"
+          :key="idx"
+      >
+        <div class="advantages-mobile__item">
+          <div class="advantages__image" v-html="slide.image"></div>
+          <h3>{{ slide.title }}</h3>
+          <p class="advantages-mobile__description">{{ slide.description }}</p>
+        </div>
+      </swiper-slide>
+    </swiper-container>
 
-    <section class="advantages">
-      <div class="container">
-        <ul class="advantages__list">
-          <li v-for="(item,index) in items" :key="index" class="advantages__item">
-            <!--            <img class="advantages__image" :src="`/assets/images/advantages/${item.image}`" alt="icon">-->
-            <div class="advantages__image" v-html="item.image"></div>
-            <h3>{{ item.title }}</h3>
-            <p class="advantages__description">{{ item.description }}</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="advantages-mobile">
-      <SliderMobile/>
-    </section>
-    <section class="slider">
-      <div class="container slider__container">
-        <Slider/>
-      </div>
-    </section>
+  </ClientOnly>
+
+  <!-- Go back one slide -->
+  <button class="btn slider-btn slider-prev" @click="swiper.prev()">
+    ‹
+  </button>
+  <!-- Go forward one slide -->
+  <button class="btn slider-btn slider-next" @click="swiper.next()">
+    ›
+  </button>
 </template>
 
-<style scoped>
-
-</style>

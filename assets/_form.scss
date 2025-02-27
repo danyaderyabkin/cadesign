@@ -1,0 +1,160 @@
+.form {
+  position: relative;
+  .form-label {
+    position: relative;
+    width: 100%;
+
+    input:focus-visible + span{
+      font-size: $fontSmall;
+      top: 25%;
+    }
+    &-span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 1.5rem;
+      z-index: 1;
+      color: #696969;
+      transition: top .2s, font-size .2s;
+      @include sm-mobile {
+        font-size: $fontSmall;
+        left: 1.2rem;
+      }
+      &.filled {
+        font-size: $fontSmall;
+        top: 25%;
+      }
+
+    }
+
+  }
+  .form-close {
+    position: absolute;
+    right: -52px;
+    top: 0;
+    padding: 1rem 1.25rem;
+    @include md-desktop {
+      right: 20px;
+      top: 20px;
+    }
+    @include sm-mobile {
+      padding: .5rem .75rem;
+    }
+  }
+  .input, textarea {
+    font-size: $font;
+    outline: none;
+    border: none;
+    background-color: #F2F2F2;
+    padding: 2rem 1.5rem 1rem;
+    resize: none;
+    position: relative;
+    font-family: inherit;
+    width: 100%;
+    transition: background-color .2s;
+    @include sm-mobile {
+      padding: 1.7rem 1.2rem 0.7rem;
+    }
+    &.error {
+      outline: 1px solid #BE1A1A;
+    }
+
+  }
+  .form-files {
+    position: absolute;
+    left: 3px;
+    bottom: 3px;
+    color: $orange;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: $fontSmall;
+  }
+  .form-date {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='16' viewBox='0 0 17 16' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M13 1H4V0H2V1H0V3V14V16H2H15H17V14V7V6V3V1H15V0H13V1ZM2 3H15V6H2V3ZM2 7V14H15V7H2Z' fill='%234F4F4F'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  .form-phone {
+    padding: 2rem 1.5rem 1rem;
+  }
+
+  .form-short {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .form-ready {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    width: 6px;
+    height: 12px;
+    transform: rotate(45deg) translateY(-50%);
+    border-bottom: 2px solid #27AE60;
+    border-right: 2px solid #27AE60;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s, visibility .2s;
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .form-error {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    width: 6px;
+    height: 12px;
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s, visibility .2s;
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .form-error-text {
+    position: absolute;
+    top: 100%;
+    left: 1.5rem;
+    font-size: $fontExtraSmall;
+    color: #BE1A1A;
+    @include sm-tablets {
+      font-size: 10px;
+    }
+    @include sm-mobile {
+      top: 102%;
+      left: 0;
+    }
+  }
+  .form-label input:focus-visible {
+    background-color: $white;
+    outline: 1px solid #E0E0E0
+  }
+
+  .form-label input.error:focus-visible , .form textarea.error:focus-visible {
+    outline: 1px solid #BE1A1A
+  }
+}
+
+@media (any-hover: hover) {
+  .form-label input:hover , .form textarea:hover{
+    outline: 1px solid #E0E0E0
+  }
+}

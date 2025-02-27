@@ -1,0 +1,212 @@
+.header {
+  padding: 0 2rem;
+  border-bottom: 1px solid $gray;
+  margin-bottom: 2rem;
+  position: relative;
+  background-color: $white;
+  z-index: 10;
+  @include lg-desktop {
+    padding: 0 1rem;
+  }
+  @include md-desktop {
+    margin-bottom: 0;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    padding: 0;
+    @include xl-desktop {
+      gap: 5rem;
+    }
+    @include lg-desktop {
+      gap: 2rem;
+      justify-content: space-between;
+    }
+  }
+  &__logo {
+    width: 115px;
+    transition: opacity 0.5s;
+  }
+
+  .nav {
+    &__list {
+      display: flex;
+      @include md-desktop {
+        display: none;
+      }
+    }
+    &__item {
+      margin-right: 3rem;
+      position: relative;
+      z-index: 1;
+      &:last-child {
+        margin-right: 0;
+      }
+      @include lg-desktop {
+        margin-right: 1rem;
+      }
+
+
+    }
+    &__link {
+      color: $dark;
+      display: flex;
+      padding: 2rem .5rem 2rem;
+      position: relative;
+      transition: color .5s;
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        margin: auto;
+        height: 1px;
+        width: 0;
+        background: transparent;
+        transition: width .5s ease, background-color .5s ease;
+      }
+      &.router-link-active:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        margin: auto;
+        height: 1px;
+        width: 100%;
+        transition: width .5s ease, background-color .5s ease;
+        background-color: $orange;
+      }
+      &.text-blue {
+        color: $blue;
+        align-items: center;
+        gap: .5rem;
+      }
+    }
+
+    &__dropdown {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 190px;
+      padding: 20px;
+      box-shadow: 0px 17px 46px 0px #00000014;
+      position: absolute;
+      top: 100%;
+      background-color: $white;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+      li {
+        .btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 70px;
+          height: 50px;
+          padding: 0;
+          color: $orange;
+          transition: color .3s;
+        }
+      }
+
+    }
+
+
+  }
+
+  &__btn {
+    display: none;
+    padding: 0;
+    @include md-desktop {
+      display: block;
+    }
+  }
+  &__bg {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background: #242627D6;
+  }
+  &__menu {
+    background-color: $dark;
+    padding: 2rem;
+    gap: 1rem;
+    &-socials {
+      display: flex;
+      gap: 2rem;
+      @include sm-mobile-x {
+        gap: 1rem;
+      }
+      .btn-second {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        width: 50px;
+        height: 35px;
+        color: $white;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    }
+
+  }
+  &__link {
+    display: flex;
+    color: $white;
+    margin-bottom: 1rem;
+    &.router-link-active {
+      color: $orange;
+    }
+  }
+  &__close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1rem;
+    color: $white;
+  }
+}
+
+@media (any-hover: hover) {
+  .header {
+    &__logo:hover {
+      opacity: 0;
+    }
+    .nav {
+      &__link:hover {
+        color: $orange;
+        &.text-blue {
+          color: $mainBlue;
+        }
+        &.text-blue:after {
+          width: 0;
+        }
+      }
+      &__link:hover:after {
+        width: 100%;
+        background-color: $orange;
+      }
+      &__item.dropdown:hover ul{
+        opacity: 1;
+        visibility: visible;
+      }
+      &__dropdown .btn-second:hover {
+        color: $mainBlue;
+      }
+    }
+
+  }
+}

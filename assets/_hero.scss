@@ -1,0 +1,97 @@
+.hero {
+  display: flex;
+  position: relative;
+  background-image: url("/public/assets/images/Union.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  min-height: 450px;
+  max-width: 1920px;
+  margin: 0 auto;
+  @include lg-desktop {
+    background-position: -350px bottom;
+  }
+  @include md-desktop {
+    min-height: 390px;
+    background-position: -450px bottom;
+  }
+  @include sm-mobile {
+    min-height: 320px;
+  }
+
+  &__container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 0 auto;
+    @include xl-desktop {
+      padding: 2rem;
+    }
+    @include sm-tablets {
+      justify-content: space-between;
+      align-items: center;
+    }
+    @include sm-mobile {
+      padding: 2rem 1rem;
+    }
+
+    .btn-primary {
+      z-index: 1;
+    }
+  }
+  &__people {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/public/assets/images/finy.png");
+    background-position: 65% bottom;
+    background-repeat: no-repeat;
+    @include xxl-desktop {
+      background-position: 85% bottom;
+    }
+    @include lg-desktop {
+      background-position: 400px bottom;
+    }
+    @include md-desktop {
+      background-size: 60%;
+    }
+    @include sm-tablets {
+      background-size: 90%;
+      background-position: 50px bottom;
+    }
+    @include sm-mobile {
+      background-size: 100%;
+    }
+  }
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/public/assets/images/image.jpg");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    z-index: -1;
+    @include md-desktop {
+      background-position: 10px top;
+    }
+  }
+
+  h1 {
+    color: $white;
+    font-size: $fontTitle;
+    font-weight: $fwBold;
+    margin-bottom: 3rem;
+    @include sm-tablets {
+      font-size: 30px;
+      z-index: 1;
+    }
+    @include sm-mobile {
+      font-size: 24px;
+    }
+  }
+
+}

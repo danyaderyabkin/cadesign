@@ -18,7 +18,7 @@ const props = defineProps({
     type: String
   },
   regex: {
-    type: String
+    type: RegExp
   },
   propErrorText: {
     type: String
@@ -31,9 +31,12 @@ const props = defineProps({
   },
   modelValue: {
     type: Boolean
+  },
+  name: {
+    type: String
   }
 })
-const regexType: string = props.regex!;
+const regexType: RegExp = props.regex!;
 const validate = ():void => {
   if (!regexType.test(field.value.text)) {
     field.value.errorText = props.propErrorText;
@@ -50,8 +53,8 @@ watch(() => field.value.validate, () => emit('update:modelValue', field.value.va
 
 <template>
   <label class="form-label">
-    <input v-if="vvMask" :class="{error: field.error}" class="input" v-model="field.text" @blur="validate" :type="formType" v-maska="`${vvMask}`">
-    <input v-else :class="{error: field.error}" class="input" v-model="field.text" @blur="validate" :type="formType">
+    <input v-if="vvMask" :class="{error: field.error}" class="input" v-model="field.text" @blur="validate" :type="formType" v-maska="`${vvMask}`" :name="name" :value="field.text">
+    <input v-else :class="{error: field.error}" class="input" v-model="field.text" @blur="validate" :type="formType" :name="name" :value="field.text">
     <span :class="{filled: field.text.length > 0}" class="form-label-span">{{placeholder}}</span>
     <span v-if="field.errorText" class="form-error-text">{{ field.errorText }}</span>
     <span :class="{visible: field.validate}" class="form-ready"></span>

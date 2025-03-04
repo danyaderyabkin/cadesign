@@ -16,6 +16,8 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@vueuse/components": "^12.7.0",
+    "@vueuse/core": "^12.7.0",
     "maska": "^3.1.0",
     "sass": "^1.85.0"
   }

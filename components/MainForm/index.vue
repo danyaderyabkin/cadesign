@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {vMaska} from "maska/vue"
-
+import { vOnClickOutside } from '@vueuse/components'
 const emit = defineEmits(['closeModal'])
 const props = defineProps({
   opened: {
@@ -14,6 +14,7 @@ const checkBox = ref(true)
 const modal = ref(false)
 const body = ref()
 const date = ref('')
+const comment = ref('')
 const readyForm = ref(false)
 const vacancy = ref(false)
 const name = ref(false)
@@ -33,15 +34,20 @@ const reset = () => {
 }
 
 const sendForm = (e) => {
-  e.target.reset()
   readyForm.value = true
+  const formData = new FormData(e.target)
+  console.table([...formData.entries()]);
+  e.target.reset()
+  date.value = ''
+  fileAdditional.value = ''
+  comment.value = ''
+  setTimeout(() => {readyForm.value = false}, 3000)
 }
 
 const closeModalForm = () => {
   modal.value = false
   emit('closeModal')
 }
-
 
 const readyForSend = computed(() => {
   return fileAdditional.value && checkBox.value && vacancy.value && name.value && phone.value && mail.value && study.value && address.value
@@ -62,7 +68,7 @@ watch(() => props.opened, () => {
 
 <template>
   <div v-if="opened" class="modal">
-    <div class="feedback">
+    <div class="feedback" v-on-click-outside="closeModalForm" >
       <form v-if="!readyForm" @submit.prevent="sendForm" class="feedback__form form">
         <h2 class="feedback__title">Отклик на вакансию</h2>
         <button @click.prevent="closeModalForm" type="button" class="btn btn-primary form-close">
@@ -72,14 +78,14 @@ watch(() => props.opened, () => {
                 fill="white" stroke="white"/>
           </svg>
         </button>
-        <FormField v-model="vacancy" form-type="text" :regex="/^[А-ЯЁ][а-яё]+$/" prop-error-text="Введите желаемую вакансию (Например: Менеджер)" placeholder="Желаемая вакансия *"/>
-        <FormField v-model="name" form-type="text" :regex="/^[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+$/" prop-error-text="Введите фамилию, имя и отчество через пробел (Например: Иванов Петр Алексеевич)" placeholder="Фамилия, имя и отчество *"/>
+        <FormField v-model="vacancy" form-type="text" :regex="/^[А-ЯЁа-яё-]+$/" prop-error-text="Введите желаемую вакансию (Например: Менеджер)" name="vacancy" placeholder="Желаемая вакансия *"/>
+        <FormField v-model="name" form-type="text" :regex="/^[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+$/" prop-error-text="Введите фамилию, имя и отчество через пробел (Например: Иванов Петр Алексеевич)" name="name" placeholder="Фамилия, имя и отчество *"/>
         <div class="feedback__wrapper">
-          <FormField v-model="phone"  form-type="text" :regex="/^\+?[78][-(]?\d{3}\)?-?\d{3}-?\d{2}-?\d{2}$/" prop-error-text="Введите верный номер телефона" placeholder="Мобильный телефон *" vv-mask="+7(###)###-##-##"/>
-          <FormField v-model="mail"  form-type="email" :regex="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" prop-error-text="Введите корректный email" placeholder="E-mail"/>
+          <FormField v-model="phone"  form-type="text" :regex="/^\+?[78][-(]?\d{3}\)?-?\d{3}-?\d{2}-?\d{2}$/" prop-error-text="Введите верный номер телефона" name="phone" placeholder="Мобильный телефон *" vv-mask="+7(###)###-##-##"/>
+          <FormField v-model="mail"  form-type="email" :regex="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" prop-error-text="Введите корректный email" name="email" placeholder="E-mail"/>
         </div>
-        <FormField v-model="study" form-type="text" :regex="/^[А-ЯЁ][а-яё]+$/" prop-error-text="Введите Ваше образование(Например: Высшее)" placeholder="Образование *"/>
-        <FormField v-model="address"  form-type="text" :regex="/^[А-ЯЁ][а-яё]+$/" prop-error-text="Введите адрес проживания(Например: Иваново)" placeholder="Адрес места жительства *"/>
+        <FormField v-model="study" form-type="text" :regex="/^[А-ЯЁа-яё-]+$/" prop-error-text="Введите Ваше образование(Например: Высшее)" name="study" placeholder="Образование *"/>
+        <FormField v-model="address"  form-type="text" :regex="/^[А-ЯЁа-яё-]+$/" prop-error-text="Введите адрес проживания(Например: Иваново)" name="address" placeholder="Адрес места жительства *"/>
         <div class="feedback__wrapper">
           <label class="form-label">
             <input class="input" v-model="date" type="tel" v-maska="'##/##/####'">
@@ -98,10 +104,11 @@ watch(() => props.opened, () => {
                     fill="#E9862A"/>
               </svg>
               </span>
-            <input class="hidden" @change="fileName" type="file" required placeholder="резюме">
+            <input class="hidden" @change="fileName"  type="file" required placeholder="резюме">
+            <input type="text" :value="fileAdditional" hidden name="file">
           </label>
         </div>
-        <textarea name="comment" rows="5" placeholder="Комментарий"></textarea>
+        <textarea name="comment" rows="5" v-model="comment" placeholder="Комментарий"></textarea>
         <div class="feedback__footer">
           <label class="checkbox-wrapper-42">
             <input id="cbx-42" v-model="checkBox" type="checkbox"/>
